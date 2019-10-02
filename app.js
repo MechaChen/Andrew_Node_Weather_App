@@ -1,19 +1,9 @@
-console.log('Starting');
+const request = require('request');
 
-setTimeout(() => {
-    console.log('2 Second Timer');
-}, 2000);
+const url = 'https://api.darksky.net/forecast/d4950cfcd7848f7f38a8e24385427d0e/37.8267,-122.4233';
 
-setTimeout(() => {
-    console.log('0 Second Timer');
-}, 0);
-
-console.log('Stopping');
-
-const asyncTest = async () => {
-    await setTimeout(() => console.log('4 Second Timer'), 4000);
-
-    console.log('After 4 second');
-};
-
-asyncTest();
+request({ url }, (error, response) => {
+    const data = JSON.parse(response.body);
+    // console.log(data);
+    console.log(data.currently);
+});
